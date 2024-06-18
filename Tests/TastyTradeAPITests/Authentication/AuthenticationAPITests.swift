@@ -21,7 +21,7 @@ final class AuthenticationAPITests: XCTestCase {
         try await auth.login()
         
         XCTAssertNotNil(auth.token)
-        XCTAssertNotNil(auth.refreshToken)
+        XCTAssertNotNil(auth.rememberToken)
     }
     
     /// Tests authenication without a rememberToken using a valid login and valid password
@@ -35,7 +35,7 @@ final class AuthenticationAPITests: XCTestCase {
         try await auth.login()
         
         XCTAssertNotNil(auth.token)
-        XCTAssertNil(auth.refreshToken)
+        XCTAssertNil(auth.rememberToken)
     }
     
     /// Tests authentication with an invalid password
@@ -50,10 +50,35 @@ final class AuthenticationAPITests: XCTestCase {
         do {
             try await auth.login()
             XCTFail("No error thrown")
-        } catch AuthError.invalidCredentials(let message) {
+        } catch AuthError.invalidCredentials(_) {
             // should fall into this catch block
         } catch {
             XCTFail("Incorrect error thrown")
         }
+    }
+    
+    /// Tests authentication using a valid login and valid remember token
+    func testValidLoginWithRememberToken() async throws {
+        let auth = TastyTradeAuth(
+            login: "kevintest",
+            password: "kevin-test-password",
+            rememberMe: true,
+            sandbox: true
+        )
+        // generate a remember token
+        try await auth.login()
+        
+        // store original tokens
+        XCTAssertNotNil(auth.token)
+        XCTAssertNotNil(auth.rememberToken)
+        let origToken = auth.token!
+        let origRemember = auth.rememberToken!
+        
+        // generate new token using remember
+        try await auth.login()
+        XCTAssertNotNil(auth.token)
+        XCTAssertNotNil(auth.rememberToken)
+        XCTAssertNotEqual(auth.token, origToken)
+        XCTAssertNotEqual(auth.rememberToken, origRemember)
     }
 }

@@ -15,7 +15,7 @@ class TastyTradeAuth {
     var sandbox: Bool
     
     var token: String?
-    var refreshToken: String?
+    var rememberToken: String?
     
     init(
         login: String,
@@ -33,7 +33,7 @@ class TastyTradeAuth {
         let headers = [
             "content-type": "application/json"
         ]
-        let body = LoginRequest(login: login, password: password, rememberMe: rememberMe)
+        let body = LoginRequest(login: login, password: password, rememberMe: rememberMe, rememberToken: rememberToken)
         
         let (statusCode, data) = try await RequestUtil.post(
             useSandbox: sandbox,
@@ -50,7 +50,7 @@ class TastyTradeAuth {
             }
             if rememberMe {
                 if let rememberTok = respData.rememberToken {
-                    refreshToken = rememberTok
+                    rememberToken = rememberTok
                 } else {
                     throw AuthError.other("No remember token in api response")
                 }
