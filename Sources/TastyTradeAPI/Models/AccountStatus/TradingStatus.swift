@@ -15,7 +15,7 @@ struct TradingStatus: Codable {
     var dayTradeCount: Int?
     var equitiesMarginCalculationType: String?
     var feeScheduleName: String?
-    var futuresMarginRateMultiplier: Double?
+    var futuresMarginRateMultiplier: String?
     var id: Int?
     var areDeepItmCarryOptionsEnabled: Bool?
     var areFarOtmNetOptionsRestricted: Bool?
@@ -44,7 +44,7 @@ struct TradingStatus: Codable {
     var shortCallsEnabled: Bool?
     var optionsLevel: String?
     var pdtResetOn: String?
-    var smallNotionalFuturesMarginRateMultiplier: Double?
+    var smallNotionalFuturesMarginRateMultiplier: String?
     var cmtaOverride: Int?
     var enhancedFraudSafeguardsEnabledAt: String?
     var updatedAt: String?

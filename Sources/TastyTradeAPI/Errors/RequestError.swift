@@ -9,7 +9,9 @@ import Foundation
 
 enum RequestError: Error {
     
+    case noAuth
     case badURL
+    case notFound
     case encodeFailure
     case requestFailure
     case noStatusCode

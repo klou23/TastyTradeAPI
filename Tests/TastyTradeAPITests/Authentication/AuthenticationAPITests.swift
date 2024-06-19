@@ -58,6 +58,7 @@ final class AuthenticationAPITests: XCTestCase {
     }
     
     /// Tests authentication using a valid login and valid remember token
+    /// Will fail if testValidLoginWithPasswordAndRemember fails
     func testValidLoginWithRememberToken() async throws {
         let auth = TastyTradeAuth(
             login: "kevintest",

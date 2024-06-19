@@ -93,7 +93,7 @@ struct RequestUtil {
         path: [String],
         headers: [String: String],
         params: [String: String]
-    ) async throws {
+    ) async throws -> (Int, Data) {
         
         let request = try buildRequest(
             useSandbox: useSandbox,
