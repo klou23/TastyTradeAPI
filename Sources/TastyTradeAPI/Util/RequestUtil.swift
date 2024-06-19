@@ -28,7 +28,7 @@ struct RequestUtil {
         body: Data? = nil
     ) throws -> URLRequest {
         guard var urlComponents = URLComponents(string: getEndpoint(useSandbox, path)) else {
-            throw RequestError.badURL
+            throw TastyAPI.RequestError.urlCreationFailure
         }
         
         if let params = params {
@@ -39,10 +39,11 @@ struct RequestUtil {
         }
         
         guard let requestURL = urlComponents.url else {
-            throw RequestError.badURL
+            throw TastyAPI.RequestError.urlCreationFailure
         }
         var request = URLRequest(url: requestURL)
         request.httpMethod = method
+        
         if let body = body {
             request.httpBody = body
         }
@@ -57,54 +58,51 @@ struct RequestUtil {
     static func sendRequest(_ request: URLRequest) async throws -> (Int, Data) {
         
         guard let (data, urlResponse) = try? await URLSession.shared.data(for: request) else {
-            throw RequestError.requestFailure
+            throw TastyAPI.RequestError.requestFailure
         }
         
         guard let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode else {
-            throw RequestError.noStatusCode
+            throw TastyAPI.ApiError.noStatusCode
         }
         
         return (statusCode, data)
         
     }
     
-    static func post(
-        useSandbox: Bool,
-        path: [String],
-        headers: [String: String],
-        body: Data
-    ) async throws -> (Int, Data) {
+    static func handleHttpErrors(statusCode: Int, data: Data) throws {
+        if statusCode == 404 {
+            throw TastyAPI.ApiError.http404
+        }
         
-        let request = try buildRequest(
-            useSandbox: useSandbox,
-            path: path,
-            method: "POST",
-            headers: headers,
-            params: nil,
-            body: body
-        )
+        let e = try? JSONDecoder().decode(ErrorResponse.self, from: data).error
         
-        return try await sendRequest(request)
-        
+        switch statusCode {
+        case 400:
+            throw TastyAPI.ApiError.http400(code: e?.code, message: e?.message)
+        case 401:
+            throw TastyAPI.ApiError.http401(code: e?.code, message: e?.message)
+        case 403:
+            throw TastyAPI.ApiError.http403(code: e?.code, message: e?.message)
+        case 429:
+            throw TastyAPI.ApiError.http429(code: e?.code, message: e?.message)
+        case 500:
+            throw TastyAPI.ApiError.http500(code: e?.code, message: e?.message)
+        default:
+            throw TastyAPI.ApiError.other(code: statusCode)
+        }
     }
     
-    static func get(
-        useSandbox: Bool,
-        path: [String],
-        headers: [String: String],
-        params: [String: String]
-    ) async throws -> (Int, Data) {
-        
-        let request = try buildRequest(
-            useSandbox: useSandbox,
-            path: path,
-            method: "GET",
-            headers: headers,
-            params: params,
-            body: nil
-        )
-        
-        return try await sendRequest(request)
-        
+    static func decode<T: Decodable>(_ t: T.Type, from: Data) throws -> T {
+        guard let res = try? JSONDecoder().decode(t, from: from) else {
+            throw TastyAPI.RequestError.decodingFailure
+        }
+        return res
+    }
+    
+    static func encode<T: Encodable>(_ data: T) throws -> Data {
+        guard let res = try? JSONEncoder().encode(data) else {
+            throw TastyAPI.RequestError.encodingFailure
+        }
+        return res
     }
 }

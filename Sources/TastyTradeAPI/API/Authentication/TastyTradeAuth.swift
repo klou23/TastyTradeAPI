@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Kevin Lou on 6/16/24.
 //
@@ -40,35 +40,26 @@ class TastyTradeAuth {
             path: ["sessions"],
             method: "POST",
             headers: headers,
-            body: JSONEncoder().encode(body)
+            body: RequestUtil.encode(body)
         )
         
         let (statusCode, data) = try await RequestUtil.sendRequest(request)
         
-        if statusCode == 404 {
-            throw RequestError.notFound
-        } else if statusCode >= 200 && statusCode < 300 {
-            let respData = try JSONDecoder().decode(LoginResponse.self, from: data).data
-            if let sessionTok = respData.sessionToken {
-                token = sessionTok
-            } else {
-                throw AuthError.other("No session token in api response")
-            }
-            if rememberMe {
-                if let rememberTok = respData.rememberToken {
-                    rememberToken = rememberTok
-                } else {
-                    throw AuthError.other("No remember token in api response")
-                }
-            }
+        try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
+        
+        let res = try RequestUtil.decode(LoginResponse.self, from: data).data
+        
+        if let sessionTok = res.sessionToken {
+            token = sessionTok
         } else {
-            // error
-            let error = try JSONDecoder().decode(ErrorResponse.self, from: data).error
-            if error.code == "invalid_credentials" {
-                throw AuthError.invalidCredentials(error.message)
+            throw TastyAPI.RequestError.other("No session token in api response")
+        }
+        if rememberMe {
+            if let rememberTok = res.rememberToken {
+                rememberToken = rememberTok
+            } else {
+                throw TastyAPI.RequestError.other("No remember token in api response")
             }
-            throw AuthError.other("\(error.code): \(error.message)")
         }
     }
-    
 }
