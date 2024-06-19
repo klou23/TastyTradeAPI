@@ -50,7 +50,7 @@ final class AuthenticationAPITests: XCTestCase {
         do {
             try await auth.login()
             XCTFail("No error thrown")
-        } catch AuthError.invalidCredentials(_) {
+        } catch TastyAPI.ApiError.http401(code: _, message: _) {
             // should fall into this catch block
         } catch {
             XCTFail("Incorrect error thrown")

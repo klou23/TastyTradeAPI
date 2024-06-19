@@ -70,6 +70,9 @@ struct RequestUtil {
     }
     
     static func handleHttpErrors(statusCode: Int, data: Data) throws {
+        if statusCode >= 200 && statusCode < 300 {
+            return
+        }
         if statusCode == 404 {
             throw TastyAPI.ApiError.http404
         }
