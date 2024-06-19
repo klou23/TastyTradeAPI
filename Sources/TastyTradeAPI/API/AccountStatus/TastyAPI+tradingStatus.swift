@@ -11,10 +11,10 @@ extension TastyAPI {
     
     static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
         guard let sessionTok = auth?.token else {
-            throw RequestError.noAuth
+            throw TastyAPI.RequestError.noAuthorization
         }
         guard let useSandbox = auth?.sandbox else {
-            throw RequestError.noAuth
+            throw TastyAPI.RequestError.noAuthorization
         }
         let headers = [
             "Authorization": sessionTok
@@ -28,18 +28,10 @@ extension TastyAPI {
         )
         let (statusCode, data) = try await RequestUtil.sendRequest(request)
         
-        if statusCode == 404 {
-            throw RequestError.notFound
-        } else if statusCode >= 200 && statusCode < 300 {
-            let respData = try JSONDecoder().decode(TradingStatusResponse.self, from: data).data
-            return respData
-        } else {
-            let error = try JSONDecoder().decode(ErrorResponse.self, from: data).error
-            if error.code == "token_invalid" {
-                throw RequestError.noAuth
-            }
-            throw RequestError.other("\(error.code): \(error.message)")
-        }
+        try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
+        
+        return try RequestUtil.decode(TradingStatusResponse.self, from: data).data
+        
     }
     
 }
