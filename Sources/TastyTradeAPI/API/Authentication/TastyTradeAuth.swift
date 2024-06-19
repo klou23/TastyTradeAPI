@@ -35,11 +35,15 @@ class TastyTradeAuth {
         ]
         let body = LoginRequest(login: login, password: password, rememberMe: rememberMe, rememberToken: rememberToken)
         
-        let (statusCode, data) = try await RequestUtil.post(
+        let request = try RequestUtil.buildRequest(
             useSandbox: sandbox,
             path: ["sessions"],
+            method: "POST",
             headers: headers,
-            body: JSONEncoder().encode(body))
+            body: JSONEncoder().encode(body)
+        )
+        
+        let (statusCode, data) = try await RequestUtil.sendRequest(request)
         
         if statusCode == 404 {
             throw RequestError.notFound

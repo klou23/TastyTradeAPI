@@ -19,12 +19,14 @@ extension TastyAPI {
         let headers = [
             "Authorization": sessionTok
         ]
-        let (statusCode, data) = try await RequestUtil.get(
+        
+        let request = try RequestUtil.buildRequest(
             useSandbox: useSandbox,
             path: ["accounts", accountNumber, "trading-status"],
-            headers: headers,
-            params: [:]
+            method: "GET",
+            headers: headers
         )
+        let (statusCode, data) = try await RequestUtil.sendRequest(request)
         
         if statusCode == 404 {
             throw RequestError.notFound

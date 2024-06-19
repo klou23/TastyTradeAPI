@@ -19,13 +19,13 @@ struct RequestUtil {
         return ret
     }
     
-    private static func buildRequest(
+    static func buildRequest(
         useSandbox: Bool,
         path: [String],
         method: String,
         headers: [String: String],
-        params: [String: String]?,
-        body: Data?
+        params: [String: String]? = nil,
+        body: Data? = nil
     ) throws -> URLRequest {
         guard var urlComponents = URLComponents(string: getEndpoint(useSandbox, path)) else {
             throw RequestError.badURL
@@ -54,7 +54,7 @@ struct RequestUtil {
         return request
     }
     
-    private static func sendRequest(_ request: URLRequest) async throws -> (Int, Data) {
+    static func sendRequest(_ request: URLRequest) async throws -> (Int, Data) {
         
         guard let (data, urlResponse) = try? await URLSession.shared.data(for: request) else {
             throw RequestError.requestFailure
