@@ -9,6 +9,5 @@ import Foundation
 
 enum AuthError: Error {
     case invalidCredentials(String)
-    case noRememberToken
     case other(String)
 }

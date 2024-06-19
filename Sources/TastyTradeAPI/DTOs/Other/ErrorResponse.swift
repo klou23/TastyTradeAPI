@@ -8,5 +8,5 @@
 import Foundation
 
 struct ErrorResponse: Codable {
-    var error: ApiError
+    var error: ApiErrorModel
 }
