@@ -7,6 +7,8 @@
 
 import Foundation
 
-struct ErrorResponse: Codable {
-    var error: ApiErrorModel
+class TastyAPI {
+    
+    static var auth: TastyTradeAuth?
+    
 }

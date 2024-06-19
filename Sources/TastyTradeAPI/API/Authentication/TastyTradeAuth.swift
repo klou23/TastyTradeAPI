@@ -21,7 +21,7 @@ class TastyTradeAuth {
         login: String,
         password: String,
         rememberMe: Bool,
-        sandbox: Bool = false
+        sandbox: Bool = true
     ) {
         self.login = login
         self.password = password
@@ -35,13 +35,19 @@ class TastyTradeAuth {
         ]
         let body = LoginRequest(login: login, password: password, rememberMe: rememberMe, rememberToken: rememberToken)
         
-        let (statusCode, data) = try await RequestUtil.post(
+        let request = try RequestUtil.buildRequest(
             useSandbox: sandbox,
             path: ["sessions"],
+            method: "POST",
             headers: headers,
-            body: JSONEncoder().encode(body))
+            body: JSONEncoder().encode(body)
+        )
         
-        if statusCode >= 200 && statusCode < 300 {
+        let (statusCode, data) = try await RequestUtil.sendRequest(request)
+        
+        if statusCode == 404 {
+            throw RequestError.notFound
+        } else if statusCode >= 200 && statusCode < 300 {
             let respData = try JSONDecoder().decode(LoginResponse.self, from: data).data
             if let sessionTok = respData.sessionToken {
                 token = sessionTok
