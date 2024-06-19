@@ -31,7 +31,8 @@ class TastyTradeAuth {
     
     func login() async throws {
         let headers = [
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "accept": "application/json"
         ]
         let body = LoginRequest(login: login, password: password, rememberMe: rememberMe, rememberToken: rememberToken)
         

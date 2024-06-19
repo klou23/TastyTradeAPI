@@ -108,4 +108,22 @@ struct RequestUtil {
         }
         return res
     }
+    
+    static func authHeader(auth: TastyTradeAuth?) throws -> [String: String] {
+        guard let sessionTok = auth?.token else {
+            throw TastyAPI.RequestError.noAuthorization
+        }
+        return [
+            "authorization": sessionTok,
+            "accept": "application/json",
+            "content-type": "application/json"
+        ]
+    }
+    
+    static func sandbox(auth: TastyTradeAuth?) throws -> Bool {
+        guard let useSandbox = auth?.sandbox else {
+            throw TastyAPI.RequestError.noAuthorization
+        }
+        return useSandbox
+    }
 }

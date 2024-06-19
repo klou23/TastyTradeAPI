@@ -10,18 +10,10 @@ import Foundation
 extension TastyAPI {
     
     static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
-        guard let sessionTok = auth?.token else {
-            throw TastyAPI.RequestError.noAuthorization
-        }
-        guard let useSandbox = auth?.sandbox else {
-            throw TastyAPI.RequestError.noAuthorization
-        }
-        let headers = [
-            "Authorization": sessionTok
-        ]
+        let headers = try RequestUtil.authHeader(auth: auth)
         
         let request = try RequestUtil.buildRequest(
-            useSandbox: useSandbox,
+            useSandbox: RequestUtil.sandbox(auth: auth),
             path: ["accounts", accountNumber, "trading-status"],
             method: "GET",
             headers: headers
