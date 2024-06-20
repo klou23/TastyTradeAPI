@@ -8,7 +8,7 @@
 import XCTest
 @testable import TastyTradeAPI
 
-final class AuthenticationAPITests: XCTestCase {
+final class AuthenticationTests: XCTestCase {
     
     /// Tests authentication with a remember token using a valid login and valid password
     func testValidLoginWithPasswordAndRemember() async throws {

@@ -8,7 +8,7 @@
 import XCTest
 @testable import TastyTradeAPI
 
-final class TradingStatusAPITests: XCTestCase {
+final class TradingStatusTests: XCTestCase {
     
     /// Tests retrieving trading status
     func testTradingStatusValid() async throws {
