@@ -12,74 +12,33 @@ final class AuthenticationTests: XCTestCase {
     
     /// Tests authentication with a remember token using a valid login and valid password
     func testValidLoginWithPasswordAndRemember() async throws {
-        let auth = TastyTradeAuth(
-            login: "kevintest",
-            password: "kevin-test-password",
-            rememberMe: true,
-            sandbox: true
-        )
-        try await auth.login()
-        
-        XCTAssertNotNil(auth.token)
-        XCTAssertNotNil(auth.rememberToken)
+        try await TestAuthUtils.setupValidAuth()
     }
     
     /// Tests authenication without a rememberToken using a valid login and valid password
     func testValidLoginWithPasswordNoRemember() async throws {
-        let auth = TastyTradeAuth(
-            login: "kevintest",
-            password: "kevin-test-password",
-            rememberMe: false,
-            sandbox: true
-        )
-        try await auth.login()
-        
-        XCTAssertNotNil(auth.token)
-        XCTAssertNil(auth.rememberToken)
+        try await TestAuthUtils.setupValidAuth(remember: false)
     }
     
     /// Tests authentication with an invalid password
     func testInvalidLoginWithPassword() async throws {
-        let auth = TastyTradeAuth(
-            login: "kevintest",
-            password: "invalid-password",
-            rememberMe: false,
-            sandbox: true
-        )
-        
-        do {
-            try await auth.login()
-            XCTFail("No error thrown")
-        } catch TastyAPI.ApiError.http401(code: _, message: _) {
-            // should fall into this catch block
-        } catch {
-            XCTFail("Incorrect error thrown")
-        }
+        try await TestAuthUtils.setupInvalidAuth()
     }
     
     /// Tests authentication using a valid login and valid remember token
     /// Will fail if testValidLoginWithPasswordAndRemember fails
     func testValidLoginWithRememberToken() async throws {
-        let auth = TastyTradeAuth(
-            login: "kevintest",
-            password: "kevin-test-password",
-            rememberMe: true,
-            sandbox: true
-        )
-        // generate a remember token
-        try await auth.login()
+        try await TestAuthUtils.setupValidAuth()
         
         // store original tokens
-        XCTAssertNotNil(auth.token)
-        XCTAssertNotNil(auth.rememberToken)
-        let origToken = auth.token!
-        let origRemember = auth.rememberToken!
+        let origToken = TastyAPI.auth!.token!
+        let origRemember = TastyAPI.auth!.rememberToken!
         
         // generate new token using remember
-        try await auth.login()
-        XCTAssertNotNil(auth.token)
-        XCTAssertNotNil(auth.rememberToken)
-        XCTAssertNotEqual(auth.token, origToken)
-        XCTAssertNotEqual(auth.rememberToken, origRemember)
+        try await TastyAPI.auth!.login()
+        XCTAssertNotNil(TastyAPI.auth!.token)
+        XCTAssertNotNil(TastyAPI.auth!.rememberToken)
+        XCTAssertNotEqual(TastyAPI.auth!.token, origToken)
+        XCTAssertNotEqual(TastyAPI.auth!.rememberToken, origRemember)
     }
 }
