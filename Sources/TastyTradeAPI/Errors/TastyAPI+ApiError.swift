@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    enum ApiError: Error {
+    enum ApiError: Error, Equatable {
         case noStatusCode
         case http400(code: String?, message: String?)
         case http401(code: String?, message: String?)

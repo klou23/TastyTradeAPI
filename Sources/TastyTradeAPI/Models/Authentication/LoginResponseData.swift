@@ -8,7 +8,7 @@
 import Foundation
 
 struct LoginResponseData: Codable {
-    var user: User
+    var user: User?
     var sessionToken: String?
     var rememberToken: String?
     

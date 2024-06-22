@@ -2,28 +2,35 @@
 //  File.swift
 //  
 //
-//  Created by Kevin Lou on 6/18/24.
+//  Created by Kevin Lou on 6/21/24.
 //
 
 import Foundation
 
 extension TastyAPI {
     
-    static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
+    static func totalFees(
+        accountNumber: String,
+        date: String? = nil
+    ) async throws -> TotalFees {
         let headers = try RequestUtil.authHeader(auth: auth)
+        var params: [String: Any?] = [
+            "date": date
+        ]
         
         let request = try RequestUtil.buildRequest(
             useSandbox: RequestUtil.sandbox(auth: auth),
-            path: ["accounts", accountNumber, "trading-status"],
+            path: ["accounts", accountNumber, "transactions", "total-fees"],
             method: "GET",
-            headers: headers
+            headers: headers,
+            params: params
         )
+        
         let (statusCode, data) = try await RequestUtil.sendRequest(request)
         
         try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
         
-        return try RequestUtil.decode(ResponseDTO<TradingStatus>.self, from: data).data
-        
+        return try RequestUtil.decode(ResponseDTO<TotalFees>.self, from: data).data
     }
     
 }

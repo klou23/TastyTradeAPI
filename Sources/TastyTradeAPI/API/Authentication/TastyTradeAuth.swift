@@ -31,7 +31,8 @@ class TastyTradeAuth {
     
     func login() async throws {
         let headers = [
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "accept": "application/json"
         ]
         let body = LoginRequest(login: login, password: password, rememberMe: rememberMe, rememberToken: rememberToken)
         
@@ -47,7 +48,7 @@ class TastyTradeAuth {
         
         try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
         
-        let res = try RequestUtil.decode(LoginResponse.self, from: data).data
+        let res = try RequestUtil.decode(ResponseDTO<LoginResponseData>.self, from: data).data
         
         if let sessionTok = res.sessionToken {
             token = sessionTok

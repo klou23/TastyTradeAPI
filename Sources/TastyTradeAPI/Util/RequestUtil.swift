@@ -11,6 +11,8 @@ struct RequestUtil {
     private static let standardRoot = "https://api.tastyworks.com"
     private static let sandboxRoot = "https://api.cert.tastyworks.com"
     
+    private init() { }
+    
     private static func getEndpoint(_ sandbox: Bool, _ path: [String]) -> String {
         var ret = sandbox ? sandboxRoot : standardRoot
         for p in path {
@@ -24,7 +26,7 @@ struct RequestUtil {
         path: [String],
         method: String,
         headers: [String: String],
-        params: [String: String]? = nil,
+        params: [String: Any?]? = nil,
         body: Data? = nil
     ) throws -> URLRequest {
         guard var urlComponents = URLComponents(string: getEndpoint(useSandbox, path)) else {
@@ -32,10 +34,31 @@ struct RequestUtil {
         }
         
         if let params = params {
-            urlComponents.queryItems = []
-            for (name, value) in params {
-                urlComponents.queryItems?.append(URLQueryItem(name: name, value: value))
-            }
+            
+            let queryItems = params.compactMap { (key, value) -> [URLQueryItem]? in
+                guard let value = value else {
+                    return nil
+                }
+                
+                switch value {
+                case let stringArray as [String]:
+                    return stringArray.map {
+                        URLQueryItem(name: "\(key)[]", value: $0)
+                    }
+                case let intArray as [Int]:
+                    return intArray.map {
+                        URLQueryItem(name: "\(key)[]", value: String($0))
+                    }
+                case let string as String:
+                    return [URLQueryItem(name: key, value: string)]
+                case let int as Int:
+                    return [URLQueryItem(name: key, value: String(int))]
+                default:
+                    return nil
+                }
+            }.flatMap { $0 }
+            
+            urlComponents.queryItems = queryItems.isEmpty ? nil : queryItems
         }
         
         guard let requestURL = urlComponents.url else {
@@ -107,5 +130,23 @@ struct RequestUtil {
             throw TastyAPI.RequestError.encodingFailure
         }
         return res
+    }
+    
+    static func authHeader(auth: TastyTradeAuth?) throws -> [String: String] {
+        guard let sessionTok = auth?.token else {
+            throw TastyAPI.RequestError.noAuthorization
+        }
+        return [
+            "authorization": sessionTok,
+            "accept": "application/json",
+            "content-type": "application/json"
+        ]
+    }
+    
+    static func sandbox(auth: TastyTradeAuth?) throws -> Bool {
+        guard let useSandbox = auth?.sandbox else {
+            throw TastyAPI.RequestError.noAuthorization
+        }
+        return useSandbox
     }
 }
