@@ -26,7 +26,7 @@ struct RequestUtil {
         path: [String],
         method: String,
         headers: [String: String],
-        params: [String: String]? = nil,
+        params: [String: Any?]? = nil,
         body: Data? = nil
     ) throws -> URLRequest {
         guard var urlComponents = URLComponents(string: getEndpoint(useSandbox, path)) else {
@@ -34,10 +34,31 @@ struct RequestUtil {
         }
         
         if let params = params {
-            urlComponents.queryItems = []
-            for (name, value) in params {
-                urlComponents.queryItems?.append(URLQueryItem(name: name, value: value))
-            }
+            
+            let queryItems = params.compactMap { (key, value) -> [URLQueryItem]? in
+                guard let value = value else {
+                    return nil
+                }
+                
+                switch value {
+                case let stringArray as [String]:
+                    return stringArray.map {
+                        URLQueryItem(name: "\(key)[]", value: $0)
+                    }
+                case let intArray as [Int]:
+                    return intArray.map {
+                        URLQueryItem(name: "\(key)[]", value: String($0))
+                    }
+                case let string as String:
+                    return [URLQueryItem(name: key, value: string)]
+                case let int as Int:
+                    return [URLQueryItem(name: key, value: String(int))]
+                default:
+                    return nil
+                }
+            }.flatMap { $0 }
+            
+            urlComponents.queryItems = queryItems.isEmpty ? nil : queryItems
         }
         
         guard let requestURL = urlComponents.url else {
