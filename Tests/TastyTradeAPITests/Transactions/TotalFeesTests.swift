@@ -30,6 +30,16 @@ final class TotalFeesTests: XCTestCase {
         )
     }
     
+    /// Tests retrieving total fees for today with no authentication
+    func testTotalFeesNoAuth() async throws {
+        TastyAPI.auth = nil
+        
+        await TestAssertUtils.assertThrowsAsync(
+            try await TastyAPI.totalFees(accountNumber: "5WZ06754"),
+            TastyAPI.RequestError.noAuthorization
+        )
+    }
+    
     /// Tests retrieving total fees for today with invalid account number
     func testTotalFeesInvalidAccountNumber() async throws {
         try await TestAuthUtils.setupValidAuth()

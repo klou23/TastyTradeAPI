@@ -14,10 +14,9 @@ extension TastyAPI {
         date: String? = nil
     ) async throws -> TotalFees {
         let headers = try RequestUtil.authHeader(auth: auth)
-        var params: [String: Any?] = [:]
-        if let date = date {
-            params["date"] = date
-        }
+        var params: [String: Any?] = [
+            "date": date
+        ]
         
         let request = try RequestUtil.buildRequest(
             useSandbox: RequestUtil.sandbox(auth: auth),

@@ -3,7 +3,7 @@
 <p align="center">
     <img src="https://img.shields.io/github/v/release/klou23/TastyTradeAPI" alt="release"/>
     <img src="https://img.shields.io/github/license/klou23/TastyTradeAPI" alt="license"/>
-    <img src="https://img.shields.io/badge/coverage-94%25-brightgreen" alt="coverage"/>
+    <img src="https://img.shields.io/badge/coverage-95%25-brightgreen" alt="coverage"/>
     <br>
     <img src="https://img.shields.io/badge/Swift-5.5+-orange" alt="swift"/>
     <img src="https://img.shields.io/badge/macOS-13.0+-blue" alt="macOS"/>
@@ -30,6 +30,7 @@ market data, managing accounts, and executing trades on the TastyTrade platform.
 - Currently supported API routes:
   - Users and Sessions
   - Account Status
+  - Transactions
 
 ## Installation
 
