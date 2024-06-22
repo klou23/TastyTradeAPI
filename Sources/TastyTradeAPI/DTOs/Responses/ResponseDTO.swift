@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TotalFeesResponse: Codable {
-    var data: TotalFees
+struct ResponseDTO<T: Codable>: Codable {
+    var data: T
     var context: String
 }

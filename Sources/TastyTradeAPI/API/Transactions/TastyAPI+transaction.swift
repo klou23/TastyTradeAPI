@@ -25,7 +25,7 @@ extension TastyAPI {
         
         try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
         
-        return try RequestUtil.decode(TransactionResponse.self, from: data).data
+        return try RequestUtil.decode(ResponseDTO<Transaction>.self, from: data).data
     }
     
 }

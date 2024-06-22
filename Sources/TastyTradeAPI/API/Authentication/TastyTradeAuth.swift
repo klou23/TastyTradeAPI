@@ -48,7 +48,7 @@ class TastyTradeAuth {
         
         try RequestUtil.handleHttpErrors(statusCode: statusCode, data: data)
         
-        let res = try RequestUtil.decode(LoginResponse.self, from: data).data
+        let res = try RequestUtil.decode(ResponseDTO<LoginResponseData>.self, from: data).data
         
         if let sessionTok = res.sessionToken {
             token = sessionTok
