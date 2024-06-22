@@ -11,6 +11,8 @@ struct RequestUtil {
     private static let standardRoot = "https://api.tastyworks.com"
     private static let sandboxRoot = "https://api.cert.tastyworks.com"
     
+    private init() { }
+    
     private static func getEndpoint(_ sandbox: Bool, _ path: [String]) -> String {
         var ret = sandbox ? sandboxRoot : standardRoot
         for p in path {
