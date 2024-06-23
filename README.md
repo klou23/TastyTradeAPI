@@ -29,6 +29,7 @@ market data, managing accounts, and executing trades on the TastyTrade platform.
 - Currently supported API routes:
   - Users and Sessions
   - Account Status
+  - Balances and Positions
   - Transactions
 
 ## Installation
