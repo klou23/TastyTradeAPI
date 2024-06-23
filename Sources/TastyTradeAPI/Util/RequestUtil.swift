@@ -53,6 +53,8 @@ struct RequestUtil {
                     return [URLQueryItem(name: key, value: string)]
                 case let int as Int:
                     return [URLQueryItem(name: key, value: String(int))]
+                case let bool as Bool:
+                    return [URLQueryItem(name: key, value: bool ? "true" : "false")]
                 default:
                     return nil
                 }

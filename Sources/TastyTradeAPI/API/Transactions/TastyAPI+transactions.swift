@@ -32,7 +32,7 @@ extension TastyAPI {
         
         let headers = try RequestUtil.authHeader(auth: auth)
         
-        var params: [String: Any?] = [
+        let params: [String: Any?] = [
             "per-page": perPage,
             "page-offset": pageOffset,
             "currency": currency,
