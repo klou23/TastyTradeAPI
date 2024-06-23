@@ -82,7 +82,7 @@ struct RequestUtil {
     
     static func sendRequest(_ request: URLRequest) async throws -> (Int, Data) {
         
-        guard let (data, urlResponse) = try? await URLSession.shared.data(for: request) else {
+        guard let (data, urlResponse) = try? await URLSession.shared.asyncData(for: request) else {
             throw TastyAPI.RequestError.requestFailure
         }
         

@@ -6,9 +6,9 @@
     <img src="https://img.shields.io/badge/coverage-95%25-brightgreen" alt="coverage"/>
     <br>
     <img src="https://img.shields.io/badge/Swift-5.5+-orange" alt="swift"/>
-    <img src="https://img.shields.io/badge/macOS-13.0+-blue" alt="macOS"/>
-    <img src="https://img.shields.io/badge/iOS-15.0+-blue" alt="iOS">
-    <img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen" alt="spm"/>
+    <img src="https://img.shields.io/badge/macOS-10.15+-blue" alt="macOS"/>
+    <img src="https://img.shields.io/badge/iOS-13.0+-blue" alt="iOS">
+    <img src="https://img.shields.io/badge/Linux-compatible-blue" alt="Linux">
 </p>
 
 ## Overview
