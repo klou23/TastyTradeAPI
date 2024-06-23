@@ -24,8 +24,7 @@ market data, managing accounts, and executing trades on the TastyTrade platform.
 - **[API Documentation](#api-documentation)**
 
 ## Features
-- Easy authentication with TastyTrade servers including automatically refreshing
-  the access token when necessary
+- Easy authentication with TastyTrade servers
 - Data models for all supported API responses
 - Currently supported API routes:
   - Users and Sessions
