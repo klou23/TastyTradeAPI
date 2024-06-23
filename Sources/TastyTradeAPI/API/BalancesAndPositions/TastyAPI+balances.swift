@@ -11,12 +11,12 @@ extension TastyAPI {
     
     static func balances(
         accountNumber: String,
-        currency: String?
+        currency: String? = nil
     ) async throws -> AccountBalance {
         
         let headers = try RequestUtil.authHeader(auth: auth)
         
-        var params: [String: Any?] = [
+        let params: [String: Any?] = [
             "currency": currency
         ]
         

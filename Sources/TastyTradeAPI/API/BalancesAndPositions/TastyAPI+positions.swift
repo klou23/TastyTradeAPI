@@ -23,7 +23,7 @@ extension TastyAPI {
         
         let headers = try RequestUtil.authHeader(auth: auth)
         
-        var params: [String: Any?] = [
+        let params: [String: Any?] = [
             "underlying-symbol": underlyingSymbol,
             "symbol": symbol,
             "instrument-type": instrumentType,
