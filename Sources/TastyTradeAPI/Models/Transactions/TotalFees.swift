@@ -8,8 +8,8 @@
 import Foundation
 
 public struct TotalFees: Codable {
-    var totalFees: String?
-    var totalFeesEffect: String?
+    public var totalFees: String?
+    public var totalFeesEffect: String?
     
     private enum CodingKeys: String, CodingKey {
         case totalFees = "total-fees"

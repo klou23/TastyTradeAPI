@@ -8,13 +8,13 @@
 import Foundation
 
 public struct TransactionLots: Codable {
-    var id: String?
-    var transactionId: Int?
-    var quantity: String?
-    var price: String?
-    var quantityDirection: String?
-    var executedAt: String?
-    var transactionDate: String?
+    public var id: String?
+    public var transactionId: Int?
+    public var quantity: String?
+    public var price: String?
+    public var quantityDirection: String?
+    public var executedAt: String?
+    public var transactionDate: String?
     
     private enum CodingKeys: String, CodingKey {
         case id

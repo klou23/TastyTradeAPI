@@ -8,15 +8,15 @@
 import Foundation
 
 public struct Pagination: Codable {
-    var perPage: Int
-    var pageOffset: Int
-    var itemOffset: Int
-    var totalItems: Int
-    var totalPages: Int
-    var currentItemCount: Int
-    var previousLink: String?
-    var nextLink: String?
-    var pagingLinkTemplate: String?
+    public var perPage: Int
+    public var pageOffset: Int
+    public var itemOffset: Int
+    public var totalItems: Int
+    public var totalPages: Int
+    public var currentItemCount: Int
+    public var previousLink: String?
+    public var nextLink: String?
+    public var pagingLinkTemplate: String?
     
     private enum CodingKeys: String, CodingKey {
         case perPage = "per-page"
