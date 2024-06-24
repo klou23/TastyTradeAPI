@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CurrentPosition: Codable {
+public struct CurrentPosition: Codable {
     var accountNumber: String?
     var symbol: String?
     var instrumentType: String?

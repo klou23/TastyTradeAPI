@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func transactions(
+    public static func transactions(
         accountNumber: String,
         perPage: Int? = nil,
         pageOffset: Int? = nil,

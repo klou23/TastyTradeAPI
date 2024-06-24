@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pagination: Codable {
+public struct Pagination: Codable {
     var perPage: Int
     var pageOffset: Int
     var itemOffset: Int

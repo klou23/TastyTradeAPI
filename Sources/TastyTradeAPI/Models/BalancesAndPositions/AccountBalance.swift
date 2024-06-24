@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AccountBalance: Codable {
+public struct AccountBalance: Codable {
     var accountNumber: String?
     var currency: String?
     var cashBalance: String?

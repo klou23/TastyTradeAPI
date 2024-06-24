@@ -7,4 +7,4 @@
 
 import Foundation
 
-struct RestrictedQuantity: Codable { }
+public struct RestrictedQuantity: Codable { }

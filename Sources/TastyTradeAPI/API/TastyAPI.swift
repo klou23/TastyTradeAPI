@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct TastyAPI {
+public class TastyAPI {
     
-    static var auth: TastyTradeAuth?
+    public static var auth: TastyTradeAuth?
    
     private init() { }
     

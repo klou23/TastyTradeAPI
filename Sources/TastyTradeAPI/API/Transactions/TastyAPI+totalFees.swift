@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func totalFees(
+    public static func totalFees(
         accountNumber: String,
         date: String? = nil
     ) async throws -> TotalFees {

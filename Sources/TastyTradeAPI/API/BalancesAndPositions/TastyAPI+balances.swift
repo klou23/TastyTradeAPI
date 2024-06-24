@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func balances(
+    public static func balances(
         accountNumber: String,
         currency: String? = nil
     ) async throws -> AccountBalance {

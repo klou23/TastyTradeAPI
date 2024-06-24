@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func positions(
+    public static func positions(
         accountNumber: String,
         underlyingSymbol: [String]? = nil,
         symbol: String? = nil,

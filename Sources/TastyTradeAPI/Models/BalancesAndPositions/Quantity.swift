@@ -7,4 +7,4 @@
 
 import Foundation
 
-struct Quantity: Codable { }
+public struct Quantity: Codable { }

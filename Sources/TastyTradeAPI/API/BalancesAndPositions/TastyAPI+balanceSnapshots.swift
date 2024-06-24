@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func balanceSnapshots(
+    public static func balanceSnapshots(
         accountNumber: String,
         timeOfDay: String,
         perPage: Int? = nil,

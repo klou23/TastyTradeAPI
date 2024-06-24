@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TotalFees: Codable {
+public struct TotalFees: Codable {
     var totalFees: String?
     var totalFeesEffect: String?
     

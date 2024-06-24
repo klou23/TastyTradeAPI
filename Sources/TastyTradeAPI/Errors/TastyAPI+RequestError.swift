@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    enum RequestError: Error, Equatable {
+    public enum RequestError: Error, Equatable {
         
         case noAuthorization
         case urlCreationFailure
