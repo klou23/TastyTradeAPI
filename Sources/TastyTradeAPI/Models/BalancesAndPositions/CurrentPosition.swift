@@ -7,36 +7,41 @@
 
 import Foundation
 
+/// Data model for storing an owned position
+///
+/// A list of this type is returned from ``TastyAPI/positions(accountNumber:underlyingSymbol:symbol:instrumentType:includeClosedPositions:underlyingProductCode:partitionKeys:netPositions:includeMarks:)``.
+///
+///  More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/balances-and-positions/#/).
 public struct CurrentPosition: Codable {
-    var accountNumber: String?
-    var symbol: String?
-    var instrumentType: String?
-    var underlyingSymbol: String?
-    var quantity: Quantity?
-    var quantityDirection: String?
-    var closePrice: String?
-    var averageOpenPrice: String?
-    var averageYearlyMarketClosePrice: String?
-    var averageDailyMarketClosePrice: String?
-    var mark: String?
-    var markPrice: String?
-    var multiplier: Int?
-    var costEffect: String?
-    var isSuppressed: Bool?
-    var isFrozen: Bool?
-    var restrictedQuantity: RestrictedQuantity?
-    var expiresAt: String?
-    var fixingPrice: String?
-    var deliverableType: String?
-    var realizedDayGain: String?
-    var realizedDayGainEffect: String?
-    var realizedDayGainDate: String?
-    var realizedToday: String?
-    var realizedTodayEffect: String?
-    var realizedTodayDate: String?
-    var createdAt: String?
-    var updatedAt: String?
-    var orderId: Int?
+    public var accountNumber: String?
+    public var symbol: String?
+    public var instrumentType: String?
+    public var underlyingSymbol: String?
+    public var quantity: Quantity?
+    public var quantityDirection: String?
+    public var closePrice: String?
+    public var averageOpenPrice: String?
+    public var averageYearlyMarketClosePrice: String?
+    public var averageDailyMarketClosePrice: String?
+    public var mark: String?
+    public var markPrice: String?
+    public var multiplier: Int?
+    public var costEffect: String?
+    public var isSuppressed: Bool?
+    public var isFrozen: Bool?
+    public var restrictedQuantity: RestrictedQuantity?
+    public var expiresAt: String?
+    public var fixingPrice: String?
+    public var deliverableType: String?
+    public var realizedDayGain: String?
+    public var realizedDayGainEffect: String?
+    public var realizedDayGainDate: String?
+    public var realizedToday: String?
+    public var realizedTodayEffect: String?
+    public var realizedTodayDate: String?
+    public var createdAt: String?
+    public var updatedAt: String?
+    public var orderId: Int?
 
     private enum CodingKeys: String, CodingKey {
         case accountNumber = "account-number"

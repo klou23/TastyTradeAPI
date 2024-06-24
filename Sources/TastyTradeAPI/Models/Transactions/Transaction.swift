@@ -7,55 +7,61 @@
 
 import Foundation
 
+/// Data model for storing a transactions
+///
+/// The type is returned from ``TastyAPI/transaction(accountNumber:id:)`` and
+/// ``TastyAPI/transactions(accountNumber:perPage:pageOffset:currency:sort:type:types:subType:startDate:endDate:instrumentType:symbol:underlyingSymbol:action:partitionKey:futuresSymbol:startAt:endAt:)``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/transactions/#/).
 public struct Transaction: Codable {
-    var id: Int?
-    var accountNumber: String?
-    var symbol: String?
-    var instrumentType: String?
-    var underlyingSymbol: String?
-    var transactionType: String?
-    var transactionSubType: String?
-    var description: String?
-    var action: String?
-    var quantity: String?
-    var price: String?
-    var executedAt: String?
-    var transactionDate: String?
-    var value: String?
-    var valueEffect: String?
-    var regulatoryFees: String?
-    var regulatoryFeesEffect: String?
-    var clearingFees: String?
-    var clearingFeesEffect: String?
-    var otherCharge: String?
-    var otherChargeEffect: String?
-    var otherChargeDescription: String?
-    var netValue: String?
-    var netValueEffect: String?
-    var commission: String?
-    var commissionEffect: String?
-    var proprietaryIndexOptionFees: String?
-    var proprietaryIndexOptionFeesEffect: String?
-    var isEstimatedFee: Bool?
-    var extExchangeOrderNumber: String?
-    var extGlobalOrderNumber: Int?
-    var extGroupId: String?
-    var extGroupFillId: String?
-    var extExecId: String?
-    var execId: String?
-    var exchange: String?
-    var orderId: Int?
-    var reversesId: Int?
-    var exchangeAffiliationIdentifier: String?
-    var costBasisReconciliationDate: String?
-    var lots: TransactionLots?
-    var legCount: Int?
-    var destinationVenue: String?
-    var agencyPrice: String?
-    var principalPrice: String?
-    var currency: String?
-    var currencyConversionFees: String?
-    var currencyConversionFeesEffect: String?
+    public var id: Int?
+    public var accountNumber: String?
+    public var symbol: String?
+    public var instrumentType: String?
+    public var underlyingSymbol: String?
+    public var transactionType: String?
+    public var transactionSubType: String?
+    public var description: String?
+    public var action: String?
+    public var quantity: String?
+    public var price: String?
+    public var executedAt: String?
+    public var transactionDate: String?
+    public var value: String?
+    public var valueEffect: String?
+    public var regulatoryFees: String?
+    public var regulatoryFeesEffect: String?
+    public var clearingFees: String?
+    public var clearingFeesEffect: String?
+    public var otherCharge: String?
+    public var otherChargeEffect: String?
+    public var otherChargeDescription: String?
+    public var netValue: String?
+    public var netValueEffect: String?
+    public var commission: String?
+    public var commissionEffect: String?
+    public var proprietaryIndexOptionFees: String?
+    public var proprietaryIndexOptionFeesEffect: String?
+    public var isEstimatedFee: Bool?
+    public var extExchangeOrderNumber: String?
+    public var extGlobalOrderNumber: Int?
+    public var extGroupId: String?
+    public var extGroupFillId: String?
+    public var extExecId: String?
+    public var execId: String?
+    public var exchange: String?
+    public var orderId: Int?
+    public var reversesId: Int?
+    public var exchangeAffiliationIdentifier: String?
+    public var costBasisReconciliationDate: String?
+    public var lots: TransactionLots?
+    public var legCount: Int?
+    public var destinationVenue: String?
+    public var agencyPrice: String?
+    public var principalPrice: String?
+    public var currency: String?
+    public var currencyConversionFees: String?
+    public var currencyConversionFeesEffect: String?
     
     private enum CodingKeys: String, CodingKey {
         case id

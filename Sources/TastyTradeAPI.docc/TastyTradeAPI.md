@@ -17,4 +17,11 @@ data, managing accounts, and executing trades on the TastyTrade platform.
     - Balances and Positions
     - Transactions
 
+#### Supported platforms:
+Because TastyTradeAPI uses Async/Await to simplify API calls, TastyTradeAPI 
+requires Swift 5.5+, and can run on the following platforms:
+- iOS 13.0+
+- macOS 10.15+
+- Linux
+
 ## Topics

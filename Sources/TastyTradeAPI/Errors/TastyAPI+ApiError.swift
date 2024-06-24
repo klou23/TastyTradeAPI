@@ -9,6 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
+    /// Error representing something went wrong with the API call
     public enum ApiError: Error, Equatable {
         case noStatusCode
         case http400(code: String?, message: String?)

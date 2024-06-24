@@ -1,6 +1,6 @@
-swift package --allow-writing-to-directory /docs \
+swift package --allow-writing-to-directory docs \
     generate-documentation --target TastyTradeAPI \
     --disable-indexing \
     --transform-for-static-hosting \
     --hosting-base-path TastyTradeAPI \
-    --output-path /docs
+    --output-path docs

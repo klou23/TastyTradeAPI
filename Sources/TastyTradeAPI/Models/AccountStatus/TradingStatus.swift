@@ -7,48 +7,53 @@
 
 import Foundation
 
+/// Data model for storing trading status
+///
+/// This type is returned from ``TastyAPI/tradingStatus(accountNumber:)``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/account-status/).
 public struct TradingStatus: Codable {
-    var accountNumber: String?
-    var autotradeAccountType: String?
-    var clearingAccountNumber: String?
-    var clearingAggregationIdentifier: String?
-    var dayTradeCount: Int?
-    var equitiesMarginCalculationType: String?
-    var feeScheduleName: String?
-    var futuresMarginRateMultiplier: String?
-    var id: Int?
-    var areDeepItmCarryOptionsEnabled: Bool?
-    var areFarOtmNetOptionsRestricted: Bool?
-    var areOptionsValuesRestrictedToNlv: Bool?
-    var areSingleTickExpiringHedgesIgnored: Bool?
-    var hasIntradayEquitiesMargin: Bool?
-    var isAggregatedAtClearing: Bool?
-    var isClosed: Bool?
-    var isClosingOnly: Bool?
-    var isCryptocurrencyClosingOnly: Bool?
-    var isCryptocurrencyEnabled: Bool?
-    var isEquityOfferingClosingOnly: Bool?
-    var isEquityOfferingEnabled: Bool?
-    var isFrozen: Bool?
-    var isFullEquityMarginRequired: Bool?
-    var isFuturesClosingOnly: Bool?
-    var isFuturesEnabled: Bool?
-    var isFuturesIntraDayEnabled: Bool?
-    var isInDayTradeEquityMaintenanceCall: Bool?
-    var isInMarginCall: Bool?
-    var isPatternDayTrader: Bool?
-    var isPortfolioMarginEnabled: Bool?
-    var isRiskReducingOnly: Bool?
-    var isRollTheDayForwardEnabled: Bool?
-    var isSmallNotionalFuturesIntraDayEnabled: Bool?
-    var shortCallsEnabled: Bool?
-    var optionsLevel: String?
-    var pdtResetOn: String?
-    var smallNotionalFuturesMarginRateMultiplier: String?
-    var cmtaOverride: Int?
-    var enhancedFraudSafeguardsEnabledAt: String?
-    var updatedAt: String?
-    var extCrmId: String?
+    public var accountNumber: String?
+    public var autotradeAccountType: String?
+    public var clearingAccountNumber: String?
+    public var clearingAggregationIdentifier: String?
+    public var dayTradeCount: Int?
+    public var equitiesMarginCalculationType: String?
+    public var feeScheduleName: String?
+    public var futuresMarginRateMultiplier: String?
+    public var id: Int?
+    public var areDeepItmCarryOptionsEnabled: Bool?
+    public var areFarOtmNetOptionsRestricted: Bool?
+    public var areOptionsValuesRestrictedToNlv: Bool?
+    public var areSingleTickExpiringHedgesIgnored: Bool?
+    public var hasIntradayEquitiesMargin: Bool?
+    public var isAggregatedAtClearing: Bool?
+    public var isClosed: Bool?
+    public var isClosingOnly: Bool?
+    public var isCryptocurrencyClosingOnly: Bool?
+    public var isCryptocurrencyEnabled: Bool?
+    public var isEquityOfferingClosingOnly: Bool?
+    public var isEquityOfferingEnabled: Bool?
+    public var isFrozen: Bool?
+    public var isFullEquityMarginRequired: Bool?
+    public var isFuturesClosingOnly: Bool?
+    public var isFuturesEnabled: Bool?
+    public var isFuturesIntraDayEnabled: Bool?
+    public var isInDayTradeEquityMaintenanceCall: Bool?
+    public var isInMarginCall: Bool?
+    public var isPatternDayTrader: Bool?
+    public var isPortfolioMarginEnabled: Bool?
+    public var isRiskReducingOnly: Bool?
+    public var isRollTheDayForwardEnabled: Bool?
+    public var isSmallNotionalFuturesIntraDayEnabled: Bool?
+    public var shortCallsEnabled: Bool?
+    public var optionsLevel: String?
+    public var pdtResetOn: String?
+    public var smallNotionalFuturesMarginRateMultiplier: String?
+    public var cmtaOverride: Int?
+    public var enhancedFraudSafeguardsEnabledAt: String?
+    public var updatedAt: String?
+    public var extCrmId: String?
     
     private enum CodingKeys: String, CodingKey {
         case accountNumber = "account-number"

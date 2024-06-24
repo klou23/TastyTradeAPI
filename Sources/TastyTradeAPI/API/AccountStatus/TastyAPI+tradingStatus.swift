@@ -9,6 +9,14 @@ import Foundation
 
 extension TastyAPI {
     
+    /// Retrieves information about the basic trade status of an account. This includes information about
+    /// the strategies an account can trade.
+    ///
+    /// More information about this method can be found in the
+    /// [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/account-status/#/trading-status/getAccountsAccountNumberTradingStatus)
+    ///
+    /// - Parameter accountNumber: TastyTrade account number
+    /// - Returns: current trading status for an account
     public static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
         let headers = try RequestUtil.authHeader(auth: auth)
         

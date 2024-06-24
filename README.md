@@ -34,10 +34,11 @@ market data, managing accounts, and executing trades on the TastyTrade platform.
 
 ## Installation
 
-Because TastyTradeAPI using Async/Await to simplify API calls, TastyTradeAPI
+Because TastyTradeAPI uses Async/Await to simplify API calls, TastyTradeAPI
 requires Swift 5.5+, and can run on the following platforms:
-- iOS 15.0+
-- macOS 13.0+
+- iOS 13.0+
+- macOS 10.15+
+- Linux
 
 Installation steps:
 1. Open the project you want to add TastyTradeAPI to in Xcode.
@@ -80,4 +81,4 @@ let status = try await TastyAPI.tradingStatus(accountNumber: "12345")
 
 ## API Documentation
 
-In progress...
+Complete documentation for TastyTradeAPI can be found [here](https://klou23.github.io/TastyTradeAPI/documentation/tastytradeapi/)
