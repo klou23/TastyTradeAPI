@@ -8,7 +8,7 @@
 import Foundation
 
 /// Authentication model that handles api tokens
-public struct TastyTradeAuth {
+public class TastyTradeAuth {
     
     var login: String
     var password: String
@@ -34,7 +34,7 @@ public struct TastyTradeAuth {
     ///
     /// If there is a rememberToken, then this method will use the rememberToken, otherwise the password
     /// will be used.
-    public mutating func login() async throws {
+    public func login() async throws {
         let headers = [
             "content-type": "application/json",
             "accept": "application/json"
