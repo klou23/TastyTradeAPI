@@ -9,6 +9,15 @@ import Foundation
 
 extension TastyAPI {
     
+    /// Retrieves the current balance values for an account
+    ///
+    /// More information about this method can be found in the
+    /// [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/balances-and-positions/#/accounts/getAccountsAccountNumberBalances)
+    ///
+    /// - Parameters:
+    ///   - accountNumber: TastyTrade account number
+    ///   - currency: Currency balance to get for account (default value: USD)
+    /// - Returns: the current balance values for an account
     public static func balances(
         accountNumber: String,
         currency: String? = nil

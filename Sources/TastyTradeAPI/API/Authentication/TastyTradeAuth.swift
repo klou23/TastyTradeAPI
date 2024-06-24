@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Authentication model that handles api tokens
 public struct TastyTradeAuth {
     
     var login: String
@@ -29,6 +30,10 @@ public struct TastyTradeAuth {
         self.sandbox = sandbox
     }
     
+    /// Attempts to authenticate with the TastyTrade servers.
+    ///
+    /// If there is a rememberToken, then this method will use the rememberToken, otherwise the password
+    /// will be used.
     public mutating func login() async throws {
         let headers = [
             "content-type": "application/json",

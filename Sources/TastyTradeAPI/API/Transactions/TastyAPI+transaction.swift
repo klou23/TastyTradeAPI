@@ -9,6 +9,15 @@ import Foundation
 
 extension TastyAPI {
     
+    /// Retrieve a transaction by account number and ID
+    ///
+    /// More information about this method can be found in the
+    /// [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/transactions/#/accounts/getAccountsAccountNumberTransactionsId)
+    /// 
+    /// - Parameters:
+    ///   - accountNumber: TastyTrade account number
+    ///   - id: Transaction ID
+    /// - Returns: The transaction for the given account number and ID
     public static func transaction(
         accountNumber: String,
         id: Int
