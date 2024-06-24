@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TradingStatus: Codable {
+public struct TradingStatus: Codable {
     var accountNumber: String?
     var autotradeAccountType: String?
     var clearingAccountNumber: String?

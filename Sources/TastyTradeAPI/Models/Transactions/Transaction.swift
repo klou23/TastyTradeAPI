@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Transaction: Codable {
+public struct Transaction: Codable {
     var id: Int?
     var accountNumber: String?
     var symbol: String?

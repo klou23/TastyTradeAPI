@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
+    public static func tradingStatus(accountNumber: String) async throws -> TradingStatus {
         let headers = try RequestUtil.authHeader(auth: auth)
         
         let request = try RequestUtil.buildRequest(

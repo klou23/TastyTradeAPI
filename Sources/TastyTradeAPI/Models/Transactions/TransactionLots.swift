@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionLots: Codable {
+public struct TransactionLots: Codable {
     var id: String?
     var transactionId: Int?
     var quantity: String?

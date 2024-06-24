@@ -9,7 +9,7 @@ import Foundation
 
 extension TastyAPI {
     
-    static func transaction(
+    public static func transaction(
         accountNumber: String,
         id: Int
     ) async throws -> Transaction {

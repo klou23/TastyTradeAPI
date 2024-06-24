@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TastyTradeAuth {
+public struct TastyTradeAuth {
     
     var login: String
     var password: String
@@ -17,7 +17,7 @@ class TastyTradeAuth {
     var token: String?
     var rememberToken: String?
     
-    init(
+    public init(
         login: String,
         password: String,
         rememberMe: Bool,
@@ -29,7 +29,7 @@ class TastyTradeAuth {
         self.sandbox = sandbox
     }
     
-    func login() async throws {
+    public mutating func login() async throws {
         let headers = [
             "content-type": "application/json",
             "accept": "application/json"
