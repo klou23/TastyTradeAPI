@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Data model for storing trading status
+///
+/// This type is returned from ``TastyAPI/tradingStatus(accountNumber:)``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/account-status/).
 public struct TradingStatus: Codable {
     public var accountNumber: String?
     public var autotradeAccountType: String?

@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// Data model for storing info about paginated responses
+///
+/// This type is returned by all methods that return a paginated list. The data here allows you to access other
+/// parts of the paginated list.
 public struct Pagination: Codable {
     public var perPage: Int
     public var pageOffset: Int

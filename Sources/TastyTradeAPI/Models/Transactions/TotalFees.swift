@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Data model for storing the total fees for an account for a given day
+///
+/// The type is returned from ``TastyAPI/totalFees(accountNumber:date:)``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/transactions/#/).
 public struct TotalFees: Codable {
     public var totalFees: String?
     public var totalFeesEffect: String?

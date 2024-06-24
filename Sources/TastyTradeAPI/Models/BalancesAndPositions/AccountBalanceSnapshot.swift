@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Data model for storing a snapshot of the current account balance
+///
+/// This type is returned from ``TastyAPI/balanceSnapshots(accountNumber:timeOfDay:perPage:pageOffset:currency:snapshotDate:startDate:endDate:)``.
+///
+///  More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/balances-and-positions/#/).
 public struct AccountBalanceSnapshot: Codable {
     public var accountNumber: String?
     public var currency: String?

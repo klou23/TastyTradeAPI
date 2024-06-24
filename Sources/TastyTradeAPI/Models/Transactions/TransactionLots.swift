@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Data model for storing transaction lots
+///
+/// This type is used in ``Transaction``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/transactions/#/).
 public struct TransactionLots: Codable {
     public var id: String?
     public var transactionId: Int?

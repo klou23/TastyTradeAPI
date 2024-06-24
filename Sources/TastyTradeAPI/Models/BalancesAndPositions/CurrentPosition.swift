@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Data model for storing an owned position
+///
+/// A list of this type is returned from ``TastyAPI/positions(accountNumber:underlyingSymbol:symbol:instrumentType:includeClosedPositions:underlyingProductCode:partitionKeys:netPositions:includeMarks:)``.
+///
+///  More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/balances-and-positions/#/).
 public struct CurrentPosition: Codable {
     public var accountNumber: String?
     public var symbol: String?

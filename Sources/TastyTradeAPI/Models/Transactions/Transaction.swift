@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// Data model for storing a transactions
+///
+/// The type is returned from ``TastyAPI/transaction(accountNumber:id:)`` and
+/// ``TastyAPI/transactions(accountNumber:perPage:pageOffset:currency:sort:type:types:subType:startDate:endDate:instrumentType:symbol:underlyingSymbol:action:partitionKey:futuresSymbol:startAt:endAt:)``.
+///
+/// More info can be found in the [TastyTrade API Docs](https://developer.tastytrade.com/open-api-spec/transactions/#/).
 public struct Transaction: Codable {
     public var id: Int?
     public var accountNumber: String?
