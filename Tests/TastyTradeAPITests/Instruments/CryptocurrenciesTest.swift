@@ -20,4 +20,12 @@ final class CryptocurrenciesTest: XCTestCase {
         }
     }
     
+    func testCryptocurrenciesSingleValid() async throws {
+        try await TestAuthUtils.setupValidAuth()
+        
+        let res = try await TastyAPI.cryptocurrencies(symbol: "DOGE/USD")
+        
+        XCTAssertEqual(res.symbol, "DOGE/USD")
+    }
+    
 }

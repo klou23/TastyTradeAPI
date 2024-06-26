@@ -30,7 +30,7 @@ extension TastyAPI {
         
         let request = try RequestUtil.buildRequest(
             useSandbox: RequestUtil.sandbox(auth: auth),
-            path: ["accounts", accountNumber, "transactions", "total-fees"],
+            path: ["accounts", accountNumber.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "", "transactions", "total-fees"],
             method: "GET",
             headers: headers,
             params: params
