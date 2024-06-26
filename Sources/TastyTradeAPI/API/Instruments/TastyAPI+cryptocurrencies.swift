@@ -39,7 +39,7 @@ extension TastyAPI {
         
         let request = try RequestUtil.buildRequest(
             useSandbox: RequestUtil.sandbox(auth: auth),
-            path: ["instruments", "cryptocurrencies", symbol.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""],
+            path: ["instruments", "cryptocurrencies", symbol.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!],
             method: "GET",
             headers: headers
         )
