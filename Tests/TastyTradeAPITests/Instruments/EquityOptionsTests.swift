@@ -8,7 +8,7 @@
 import XCTest
 @testable import TastyTradeAPI
 
-final class EquityOptionsTest: XCTestCase {
+final class EquityOptionsTests: XCTestCase {
     
     func testEquityOptionsValid() async throws {
         try await TestAuthUtils.setupValidAuth()

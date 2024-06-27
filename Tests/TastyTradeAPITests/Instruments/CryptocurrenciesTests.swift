@@ -8,7 +8,7 @@
 import XCTest
 @testable import TastyTradeAPI
 
-final class CryptocurrenciesTest: XCTestCase {
+final class CryptocurrenciesTests: XCTestCase {
     
     func testCryptocurrenciesValid() async throws {
         try await TestAuthUtils.setupValidAuth()

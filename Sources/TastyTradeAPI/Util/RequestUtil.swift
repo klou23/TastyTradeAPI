@@ -121,6 +121,7 @@ struct RequestUtil {
     }
     
     static func decode<T: Decodable>(_ t: T.Type, from: Data) throws -> T {
+        let test = try JSONDecoder().decode(t, from: from)
         guard let res = try? JSONDecoder().decode(t, from: from) else {
             throw TastyAPI.RequestError.decodingFailure
         }
